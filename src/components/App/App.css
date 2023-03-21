@@ -1,0 +1,18 @@
+.app__title {
+    font-weight: 400;
+    font-size: 36px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.app__wrap {
+    max-width: 620px;
+    margin: auto;
+}
+
+.app__no-task {
+    font-size: 20px;
+    text-align: center;
+
+    color: #CBCBCB;
+}

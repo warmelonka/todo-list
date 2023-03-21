@@ -1,0 +1,13 @@
+.main-textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+
+    font-family: 'Roboto', sans-serif;
+    border-color: #CBCBCB;
+}
+
+.main-textarea:hover {
+    outline: 1px solid #757575;
+}

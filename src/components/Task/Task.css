@@ -1,0 +1,79 @@
+.task {
+    position: relative;
+    margin-bottom: 20px;
+    border: 1px solid #CBCBCB;
+}
+
+.task--edit {
+    box-shadow: 0 3px 8px 0 #dfdfdf;
+}
+
+.task__head {
+    display: grid;
+    grid-template-columns: 40px 2fr 1fr 1fr 50px;
+}
+
+.task__checkbox {
+    align-self: center;
+    justify-self: center;
+}
+
+.task__value {
+    display: block;
+    padding: 10px 15px;
+
+    font-size: 15px;
+    color: #5B5B5B;
+}
+
+.task__value--date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    font-size: 12px;
+}
+
+.task__desc {
+    margin: 0;
+    padding: 23px;
+    color: #5B5B5B;
+    font-size: 15px;
+    font-weight: 400;
+
+    border: none;
+    border-top: 1px solid #CBCBCB;
+}
+
+.task__desc,
+.task__value--title {
+    word-break: break-word;
+}
+
+.task__value,
+.task__button {
+    background-color: white;
+    border: none;
+    border-left: 1px solid #CBCBCB;
+}
+
+.task__button:hover {
+    background-color: #EBEBEB;
+}
+
+.task__button--delete {
+    color: #CA3838;
+    font-weight: bold;
+}
+
+/*.task__textarea {*/
+/*    width: 100%;*/
+/*    padding: 20px;*/
+
+/*    box-sizing: border-box;*/
+/*    resize: none;*/
+
+/*    border: none;*/
+/*    border-top: 1px solid #CBCBCB;*/
+/*}*/

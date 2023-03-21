@@ -1,0 +1,14 @@
+.button {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px 20px;
+}
+
+.button:disabled,
+.button:disabled:hover,
+.button:disabled:active {
+    color: #5B5B5B;
+    opacity: 30%;
+    border-color: #CBCBCB;
+    background-color: transparent;
+}
