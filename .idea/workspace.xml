@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a118128-ed05-4f9d-8727-1c520060c3e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormElements/Input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormElements/Input/Input.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormElements/Textarea/Textarea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormElements/Textarea/Textarea.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NewTask/NewTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewTask/NewTask.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/Task.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/Task.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TasksList/TasksList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TasksList/TasksList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slice/taskNewSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slice/taskNewSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slice/tasksListSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slice/tasksListSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,11 +90,22 @@
       <workItem from="1679487983657" duration="1079000" />
       <workItem from="1679492299508" duration="1696000" />
       <workItem from="1679558497529" duration="6487000" />
-      <workItem from="1679573901607" duration="3945000" />
+      <workItem from="1679573901607" duration="6238000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

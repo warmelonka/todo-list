@@ -6,10 +6,9 @@ function Checkbox(props) {
   const { checked, onChange } = props;
 
   return (
-    <label className="checkbox" htmlFor="checkbox">
+    <label className="checkbox">
       <input
         className="visually-hidden"
-        id="checkbox"
         type="checkbox"
         name="checkbox"
         checked={checked}
