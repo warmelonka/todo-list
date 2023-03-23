@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 import './Task.css';
 import { taskDelete, updateTaskList } from '../../slice/tasksListSlice';
 import Button from '../Button/Button';
@@ -45,14 +45,13 @@ function Task(props) {
     }));
   };
 
-  const getDate = (date) => {
+  const getDate = (dateTask) => {
     if (completed) return 'Выполнено';
 
-    if (date) {
-      if (date < currentDate) {
+    if (dateTask) {
+      if (dateTask < currentDate) {
         return 'Просрочено!';
-      }
-      return `до ${date}`;
+      } return `до ${dateTask}`;
     }
     return 'Бессрочно';
   };
@@ -143,5 +142,18 @@ function Task(props) {
     </div>
   );
 }
+
+Task.propTypes = {
+  task: PropTypes.shape(
+    {
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    },
+  ).isRequired,
+  edit: PropTypes.bool.isRequired,
+  setEdit: PropTypes.func.isRequired,
+};
 
 export default Task;

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Textarea.css';
+import PropTypes from 'prop-types';
 
 function Textarea(props) {
   const {
@@ -9,11 +10,6 @@ function Textarea(props) {
     value,
     onChange,
   } = props;
-
-  // const handlerResize = (e) => {
-  //     e.target.style.height = 'auto'
-  //     e.target.style.height = e.target.scrollHeight + 2 + "px"
-  // }
 
   return (
     <textarea
@@ -25,5 +21,13 @@ function Textarea(props) {
     />
   );
 }
+
+Textarea.propTypes = {
+  className: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
 
 export default Textarea;

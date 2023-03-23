@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const taskNewSlice = createSlice({
-  name: 'taskForm',
+  name: 'newTaskForm',
   initialState,
   reducers: {
     updateValue(state, action) {

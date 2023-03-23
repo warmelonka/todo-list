@@ -13,12 +13,11 @@ function App() {
 
       <div className="app__wrap">
         <NewTask />
-
         {
-                    tasksList.length !== 0
-                      ? <TasksList />
-                      : <p className="app__no-task">Список задач пуст :(</p>
-                }
+          tasksList.length !== 0
+            ? <TasksList />
+            : <p className="app__no-task">Список задач пуст :(</p>
+        }
       </div>
     </div>
   );

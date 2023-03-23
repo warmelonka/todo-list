@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
+// function initialState() {
+//   const saved = localStorage.getItem('tasksList');
+//   const initialValue = JSON.parse(saved);
+//   return initialValue || [];
+// };
+
 const tasksListSlice = createSlice({
   name: 'tasksList',
   initialState: [],
@@ -10,7 +16,6 @@ const tasksListSlice = createSlice({
         ...state,
         {
           id: nanoid(),
-          completed: false,
           title: action.payload.title,
           date: action.payload.date,
           description: action.payload.description,
@@ -25,7 +30,6 @@ const tasksListSlice = createSlice({
         if (task.id === action.payload.id) {
           return {
             id: action.payload.id,
-            completed: action.payload.completed,
             title: action.payload.title,
             date: action.payload.date,
             description: action.payload.description,

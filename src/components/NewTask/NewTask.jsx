@@ -9,8 +9,8 @@ import Button from '../Button/Button';
 
 function NewTask() {
   const dispatch = useDispatch();
-  const task = useSelector((state) => state.taskForm);
-  const { title, date, description } = task;
+  const taskNew = useSelector((state) => state.taskNewForm);
+  const { title, date, description } = taskNew;
 
   const postTask = () => {
     dispatch(taskAdd({
@@ -21,7 +21,7 @@ function NewTask() {
     dispatch(clearForm());
   };
 
-  const updateValueForm = (e) => {
+  const handlerUpdateValue = (e) => {
     dispatch(updateValue({
       [e.target.name]: e.target.value,
     }));
@@ -36,14 +36,14 @@ function NewTask() {
           placeholder="Название задачи"
           name="title"
           value={title}
-          onChange={updateValueForm}
+          onChange={handlerUpdateValue}
         />
         <Input
           className="new-task__date"
           type="date"
           name="date"
           value={date}
-          onChange={updateValueForm}
+          onChange={handlerUpdateValue}
         />
       </div>
       <div className="new-task__wrap-body">
@@ -52,12 +52,12 @@ function NewTask() {
           placeholder="Описание задачи..."
           name="description"
           value={description}
-          onChange={updateValueForm}
+          onChange={handlerUpdateValue}
         />
         <div className="new-task__wrap-button">
           <Button
             className="new-task__add"
-            state={!title}
+            disabled={!title}
             value="add-task"
             onClick={postTask}
           >
