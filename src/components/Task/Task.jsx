@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import './Task.css';
-import { taskDelete, updateTaskList } from '../../slice/tasksListSlice';
+import { setTaskStatus, taskDelete, updateTaskList } from '../../slice/tasksListSlice';
 import Button from '../Button/Button';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
@@ -16,14 +16,15 @@ function Task(props) {
     title,
     date,
     description,
+    completed,
   } = task;
   const [value, setValue] = useState({
     id,
     title,
     date,
     description,
+    completed,
   });
-  const [completed, setCompleted] = useState(false);
   const currentDate = dayjs().format('YYYY-MM-DD');
   const dispatch = useDispatch();
 
@@ -42,6 +43,13 @@ function Task(props) {
   const handlerTaskDelete = () => {
     dispatch(taskDelete({
       id,
+    }));
+  };
+
+  const handlerToggle = () => {
+    dispatch(setTaskStatus({
+      id,
+      completed,
     }));
   };
 
@@ -64,7 +72,7 @@ function Task(props) {
                     <div className="task__head">
                       <Checkbox
                         checked={completed}
-                        onChange={() => setCompleted(!completed)}
+                        onChange={handlerToggle}
                       />
                       <Input
                         className="task__value task__value--title"
@@ -112,7 +120,7 @@ function Task(props) {
                       <div className="task__head">
                         <Checkbox
                           checked={completed}
-                          onChange={() => setCompleted(!completed)}
+                          onChange={handlerToggle}
                         />
                         <div className="task__value task__value--title">{title}</div>
                         <div className="task__value task__value--date">
@@ -150,6 +158,7 @@ Task.propTypes = {
       title: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
     },
   ).isRequired,
   edit: PropTypes.bool.isRequired,

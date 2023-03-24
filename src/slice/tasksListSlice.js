@@ -19,6 +19,7 @@ const tasksListSlice = createSlice({
           title: action.payload.title,
           date: action.payload.date,
           description: action.payload.description,
+          completed: false,
         },
       ];
     },
@@ -33,13 +34,24 @@ const tasksListSlice = createSlice({
             title: action.payload.title,
             date: action.payload.date,
             description: action.payload.description,
+            completed: action.payload.completed,
           };
         }
         return task;
       });
     },
+    setTaskStatus(state, action) {
+      const index = state.findIndex((todo) => todo.id === action.payload.id);
+      const task = state[index];
+      task.completed = !action.payload.completed;
+    },
   },
 });
 
-export const { taskAdd, taskDelete, updateTaskList } = tasksListSlice.actions;
+export const {
+  taskAdd,
+  taskDelete,
+  updateTaskList,
+  setTaskStatus,
+} = tasksListSlice.actions;
 export default tasksListSlice.reducer;
