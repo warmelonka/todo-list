@@ -26,20 +26,6 @@ const tasksListSlice = createSlice({
     taskDelete(state, action) {
       return [...state].filter((task) => task.id !== action.payload.id);
     },
-    updateTaskList(state, action) {
-      return [...state].map((task) => {
-        if (task.id === action.payload.id) {
-          return {
-            id: action.payload.id,
-            title: action.payload.title,
-            date: action.payload.date,
-            description: action.payload.description,
-            completed: action.payload.completed,
-          };
-        }
-        return task;
-      });
-    },
     setTaskStatus(state, action) {
       const index = state.findIndex((todo) => todo.id === action.payload.id);
       const task = state[index];
@@ -51,7 +37,6 @@ const tasksListSlice = createSlice({
 export const {
   taskAdd,
   taskDelete,
-  updateTaskList,
   setTaskStatus,
 } = tasksListSlice.actions;
 export default tasksListSlice.reducer;

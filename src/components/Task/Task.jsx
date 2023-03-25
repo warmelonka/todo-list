@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import './Task.css';
-import { setTaskStatus, taskDelete, updateTaskList } from '../../slice/tasksListSlice';
+import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
 import Button from '../Button/Button';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
 import Checkbox from '../Checkbox/Checkbox';
 
 function Task(props) {
-  const { task, edit, setEdit } = props;
+  const { task } = props;
   const {
     id,
     title,
@@ -25,7 +25,7 @@ function Task(props) {
     description,
     completed,
   });
-  const currentDate = dayjs().format('YYYY-MM-DD');
+  // const currentDate = dayjs().format('YYYY-MM-DD');
   const dispatch = useDispatch();
 
   const updateValue = (e) => {
@@ -33,11 +33,6 @@ function Task(props) {
       ...value,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handlerUpdateTaskList = () => {
-    dispatch(updateTaskList(value));
-    setEdit(false);
   };
 
   const handlerTaskDelete = () => {
@@ -53,100 +48,53 @@ function Task(props) {
     }));
   };
 
-  const getDate = (dateTask) => {
-    if (completed) return 'Выполнено';
-
-    if (dateTask) {
-      if (dateTask < currentDate) {
-        return 'Просрочено!';
-      } return `до ${dateTask}`;
-    }
-    return 'Бессрочно';
-  };
-
   return (
-    <div className={edit !== id ? 'task' : 'task task--edit'}>
-      {
-                edit === id ? (
-                  <>
-                    <div className="task__head">
-                      <Checkbox
-                        checked={completed}
-                        onChange={handlerToggle}
-                      />
-                      <Input
-                        className="task__value task__value--title"
-                        type="title"
-                        name="title"
-                        placeholder="Название задачи"
-                        value={value.title}
-                        onChange={updateValue}
-                      />
-                      <Input
-                        className="task__value task__value--date"
-                        type="date"
-                        name="date"
-                        value={value.date}
-                        onChange={updateValue}
-                      />
-                      <Button
-                        className="task__button task__button--edit"
-                        type="button"
-                        value="save-task"
-                        onClick={handlerUpdateTaskList}
-                      >
-                        Сохранить
-                      </Button>
-                      <Button
-                        className="task__button task__button--delete"
-                        type="button"
-                        value="delete-task"
-                        onClick={handlerTaskDelete}
-                      >
-                        X
-                      </Button>
-                    </div>
-                    <Textarea
-                      className="task__desc"
-                      name="description"
-                      placeholder="Описание задачи..."
-                      value={value.description}
-                      onChange={updateValue}
-                    />
-                  </>
-                )
-                  : (
-                    <>
-                      <div className="task__head">
-                        <Checkbox
-                          checked={completed}
-                          onChange={handlerToggle}
-                        />
-                        <div className="task__value task__value--title">{title}</div>
-                        <div className="task__value task__value--date">
-                          {getDate(date)}
-                        </div>
-                        <Button
-                          className="task__button task__button--edit"
-                          type="button"
-                          value="edit-task"
-                          onClick={() => setEdit(id)}
-                        >
-                          Изменить
-                        </Button>
-                        <Button
-                          className="task__button task__button--delete"
-                          type="button"
-                          value="delete-task"
-                          onClick={handlerTaskDelete}
-                        >
-                          X
-                        </Button>
-                      </div>
-                      {description.length ? <p className="task__desc">{description}</p> : ''}
-                    </>
-                  )
-            }
+    <div className="task">
+      <div className="task__head">
+        <Checkbox
+          checked={completed}
+          onChange={handlerToggle}
+        />
+        <Input
+          className="task__value task__value--title"
+          type="title"
+          name="title"
+          placeholder="Название задачи"
+          value={value.title}
+          onChange={updateValue}
+        />
+        <Input
+          className="task__value task__value--date"
+          type="date"
+          name="date"
+          value={value.date}
+          onChange={updateValue}
+        />
+        <Button
+          className="task__button task__button--edit"
+          type="button"
+          value="save-task"
+          disabled
+          onClick={() => console.log('save')}
+        >
+          Сохранить
+        </Button>
+        <Button
+          className="task__button task__button--delete"
+          type="button"
+          value="delete-task"
+          onClick={handlerTaskDelete}
+        >
+          X
+        </Button>
+      </div>
+      <Textarea
+        className="task__desc"
+        name="description"
+        placeholder="Описание задачи..."
+        value={value.description}
+        onChange={updateValue}
+      />
     </div>
   );
 }
@@ -161,8 +109,6 @@ Task.propTypes = {
       completed: PropTypes.bool.isRequired,
     },
   ).isRequired,
-  edit: PropTypes.bool.isRequired,
-  setEdit: PropTypes.func.isRequired,
 };
 
 export default Task;

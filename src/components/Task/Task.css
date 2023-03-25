@@ -58,6 +58,14 @@
     border-left: 1px solid #CBCBCB;
 }
 
+.task__button--edit {
+    border-left: none;
+}
+
+.task__value--date {
+    border-right: 1px solid #CBCBCB;
+}
+
 .task__button:hover {
     background-color: #EBEBEB;
 }
@@ -66,14 +74,3 @@
     color: #CA3838;
     font-weight: bold;
 }
-
-/*.task__textarea {*/
-/*    width: 100%;*/
-/*    padding: 20px;*/
-
-/*    box-sizing: border-box;*/
-/*    resize: none;*/
-
-/*    border: none;*/
-/*    border-top: 1px solid #CBCBCB;*/
-/*}*/
