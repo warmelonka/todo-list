@@ -4,7 +4,7 @@
     border: 1px solid #CBCBCB;
 }
 
-.task--edit {
+.task_edit {
     box-shadow: 0 3px 8px 0 #dfdfdf;
 }
 
@@ -26,7 +26,7 @@
     color: #5B5B5B;
 }
 
-.task__value--date {
+.task__value_date {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +47,7 @@
 }
 
 .task__desc,
-.task__value--title {
+.task__value_title {
     word-break: break-word;
 }
 
@@ -58,11 +58,11 @@
     border-left: 1px solid #CBCBCB;
 }
 
-.task__button--edit {
+.task__button_edit {
     border-left: none;
 }
 
-.task__value--date {
+.task__value_date {
     border-right: 1px solid #CBCBCB;
 }
 
@@ -70,7 +70,7 @@
     background-color: #EBEBEB;
 }
 
-.task__button--delete {
+.task__button_delete {
     color: #CA3838;
     font-weight: bold;
 }

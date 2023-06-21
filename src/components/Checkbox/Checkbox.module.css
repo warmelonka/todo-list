@@ -1,0 +1,34 @@
+.checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox > span {
+    position: relative;
+}
+
+.checkbox > span::before {
+    content: '';
+    display: inline-flex;
+
+    width: 8px;
+    height: 8px;
+
+    border: 1px solid #919191;
+    border-radius: 50%;
+}
+
+.checkbox > input:hover + span::before {
+    background-color: #EBEBEB;
+}
+
+.checkbox > input:checked + span::before {
+    background-color: #3FBB20;
+    border-color: #3FBB20;
+}
+
+.checkbox > input:checked:hover + span::before {
+    background-color: #84E16C;
+    border-color: #84E16C;
+}

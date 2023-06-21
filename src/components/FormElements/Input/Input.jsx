@@ -1,6 +1,7 @@
 import React from 'react';
-import './Input.css';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import s from './Input.module.css';
 
 function Input(props) {
   const {
@@ -14,7 +15,7 @@ function Input(props) {
 
   return (
     <input
-      className={`main-input ${className}`}
+      className={clsx(s.mainInput, className)}
       type={type}
       placeholder={placeholder}
       name={name}

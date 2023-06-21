@@ -1,6 +1,7 @@
 import React from 'react';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import './Button.css';
+import s from './Button.module.css';
 
 function Button(props) {
   const {
@@ -12,7 +13,7 @@ function Button(props) {
   } = props;
   return (
     <button
-      className={`button ${className}`}
+      className={clsx(s.button, className)}
       type="button"
       value={value}
       onClick={onClick}

@@ -1,11 +1,11 @@
 import React from 'react';
-import './NewTask.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { taskAdd } from '../../slice/tasksListSlice';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
 import { clearForm, updateValue } from '../../slice/taskNewSlice';
 import Button from '../Button/Button';
+import s from './NewTask.module.css';
 
 function NewTask() {
   const dispatch = useDispatch();
@@ -28,10 +28,10 @@ function NewTask() {
   };
 
   return (
-    <form className="new-task">
-      <div className="new-task__wrap-head">
+    <form className={s.newTask}>
+      <div className={s.newTask__wrapHead}>
         <Input
-          className="new-task__title"
+          className={s.newTask__title}
           type="text"
           placeholder="Название задачи"
           name="title"
@@ -39,24 +39,24 @@ function NewTask() {
           onChange={handlerUpdateValue}
         />
         <Input
-          className="new-task__date"
+          className={s.newTask__date}
           type="date"
           name="date"
           value={date}
           onChange={handlerUpdateValue}
         />
       </div>
-      <div className="new-task__wrap-body">
+      <div className={s.newTask__wrapBody}>
         <Textarea
-          className="new-task__description"
+          className={s.newTask__description}
           placeholder="Описание задачи..."
           name="description"
           value={description}
           onChange={handlerUpdateValue}
         />
-        <div className="new-task__wrap-button">
+        <div className={s.newTask__wrapButton}>
           <Button
-            className="new-task__add"
+            className={s.newTask__add}
             disabled={!title}
             value="add-task"
             onClick={postTask}
@@ -64,7 +64,7 @@ function NewTask() {
             Добавить задачу
           </Button>
           <Button
-            className="new-task__clear"
+            className={s.newTask__clear}
             value="reset-form"
             onClick={() => dispatch(clearForm())}
           >

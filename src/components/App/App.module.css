@@ -1,3 +1,6 @@
+.app {
+}
+
 .app__title {
     font-weight: 400;
     font-size: 36px;
@@ -10,7 +13,7 @@
     margin: auto;
 }
 
-.app__no-task {
+.app__noTask {
     font-size: 20px;
     text-align: center;
 

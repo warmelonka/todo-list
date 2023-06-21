@@ -1,12 +1,12 @@
 import React from 'react';
-import './Checkbox.css';
 import PropTypes from 'prop-types';
+import s from './Checkbox.module.css';
 
 function Checkbox(props) {
   const { checked, onChange } = props;
 
   return (
-    <label className="checkbox">
+    <label className={s.checkbox}>
       <input
         className="visually-hidden"
         type="checkbox"

@@ -1,6 +1,7 @@
 import React from 'react';
-import './Textarea.css';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import s from './Textarea.module.css';
 
 function Textarea(props) {
   const {
@@ -13,7 +14,7 @@ function Textarea(props) {
 
   return (
     <textarea
-      className={`main-textarea ${className}`}
+      className={clsx(s.mainTextarea, className)}
       placeholder={placeholder}
       name={name}
       value={value}

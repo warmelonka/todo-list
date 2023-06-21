@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
-import './Task.css';
+import clsx from 'clsx';
 import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
 import Button from '../Button/Button';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
 import Checkbox from '../Checkbox/Checkbox';
+import s from './Task.module.css';
 
 function Task(props) {
   const { task } = props;
@@ -25,7 +25,7 @@ function Task(props) {
     description,
     completed,
   });
-  // const currentDate = dayjs().format('YYYY-MM-DD');
+
   const dispatch = useDispatch();
 
   const updateValue = (e) => {
@@ -49,14 +49,14 @@ function Task(props) {
   };
 
   return (
-    <div className="task">
-      <div className="task__head">
+    <div className={s.task}>
+      <div className={s.task__head}>
         <Checkbox
           checked={completed}
           onChange={handlerToggle}
         />
         <Input
-          className="task__value task__value--title"
+          className={clsx(s.task__value, s.task__value_title)}
           type="title"
           name="title"
           placeholder="Название задачи"
@@ -64,14 +64,14 @@ function Task(props) {
           onChange={updateValue}
         />
         <Input
-          className="task__value task__value--date"
+          className={clsx(s.task__value, s.task__value_date)}
           type="date"
           name="date"
           value={value.date}
           onChange={updateValue}
         />
         <Button
-          className="task__button task__button--edit"
+          className={clsx(s.task__button, s.task__button_edit)}
           type="button"
           value="save-task"
           disabled
@@ -80,7 +80,7 @@ function Task(props) {
           Сохранить
         </Button>
         <Button
-          className="task__button task__button--delete"
+          className={clsx(s.task__button, s.task__button_delete)}
           type="button"
           value="delete-task"
           onClick={handlerTaskDelete}
@@ -89,7 +89,7 @@ function Task(props) {
         </Button>
       </div>
       <Textarea
-        className="task__desc"
+        className={s.task__desc}
         name="description"
         placeholder="Описание задачи..."
         value={value.description}

@@ -1,4 +1,4 @@
-.main-textarea {
+.mainTextarea {
     display: block;
     width: 100%;
     box-sizing: border-box;
@@ -8,6 +8,6 @@
     border-color: #CBCBCB;
 }
 
-.main-textarea:hover {
+.mainTextarea:hover {
     outline: 1px solid #757575;
 }

@@ -1,60 +1,60 @@
-.new-task {
+.newTask {
     margin-bottom: 40px;
     border: 1px solid #CBCBCB;
 }
 
-.new-task__wrap-head {
+.newTask__wrapHead {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #CBCBCB;
 }
 
-.new-task__title,
-.new-task__date {
+.newTask__title,
+.newTask__date {
     padding: 19px 23px;
 }
 
-.new-task__title {
+.newTask__title {
     flex-grow: 1;
     font-size: 20px;
     border: none;
 }
 
-.new-task,
-.new-task__title::placeholder,
-.new-task__date,
-.new-task__clear {
+.newTask,
+.newTask__title::placeholder,
+.newTask__date,
+.newTask__clear {
     color: #5B5B5B;
 }
 
-.new-task__date {
+.newTask__date {
     border: none;
     border-left: 1px solid #CBCBCB;
 }
 
-.new-task__date::-webkit-calendar-picker-indicator {
+.newTask__date::-webkit-calendar-picker-indicator {
     width: 20px;
     height: 20px;
 }
 
-.new-task__wrap-body {
+.newTask__wrapBody {
     padding: 23px;
 }
 
-.new-task__description {
+.newTask__description {
     height: 110px;
     margin: 0 0 10px;
     padding: 10px 20px;
 }
 
-.new-task__wrap-button {
+.newTask__wrapButton {
     display: flex;
     justify-content: flex-end;
 }
 
 /*Buttons*/
 
-.new-task__add {
+.newTask__add {
     font-size: 12px;
     color: #5B5B5B;
 
@@ -62,22 +62,22 @@
     border: 1px solid #CBCBCB;
 }
 
-.new-task__add:hover,
-.new-task__clear:hover {
+.newTask__add:hover,
+.newTask__clear:hover {
     color: #FFF;
     background-color: #757575;
 }
 
-.new-task__add:active {
+.newTask__add:active {
     border: 1px solid #9C9C9C;
 }
 
-.new-task__add:active,
-.new-task__clear:active {
+.newTask__add:active,
+.newTask__clear:active {
     background-color: #9C9C9C;
 }
 
-.new-task__clear {
+.newTask__clear {
     margin-left: 10px;
     font-size: 12px;
     background-color: #EBEBEB;
