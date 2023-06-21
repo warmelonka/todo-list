@@ -1,5 +1,8 @@
 .task {
-    position: relative;
+    display: grid;
+    grid-template-columns: 40px 2fr 1fr 1fr 50px;
+    grid-template-rows: 1fr 2fr;
+
     margin-bottom: 20px;
     border: 1px solid #CBCBCB;
 }
@@ -8,14 +11,8 @@
     box-shadow: 0 3px 8px 0 #dfdfdf;
 }
 
-.task__head {
-    display: grid;
-    grid-template-columns: 40px 2fr 1fr 1fr 50px;
-}
-
 .task__checkbox {
-    align-self: center;
-    justify-self: center;
+    order: -1;
 }
 
 .task__value {
@@ -36,6 +33,9 @@
 }
 
 .task__desc {
+    grid-column: 1 / -1;
+    order: 100;
+
     margin: 0;
     padding: 23px;
     color: #5B5B5B;

@@ -10,7 +10,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import s from './Task.module.css';
 
 function Task(props) {
-  const { task } = props;
+  const { task, edit, setEdit } = props;
   const {
     id,
     title,
@@ -35,13 +35,13 @@ function Task(props) {
     });
   };
 
-  const handlerTaskDelete = () => {
+  const handleTaskDelete = () => {
     dispatch(taskDelete({
       id,
     }));
   };
 
-  const handlerToggle = () => {
+  const handleStatusToggle = () => {
     dispatch(setTaskStatus({
       id,
       completed,
@@ -50,44 +50,21 @@ function Task(props) {
 
   return (
     <div className={s.task}>
-      <div className={s.task__head}>
-        <Checkbox
-          checked={completed}
-          onChange={handlerToggle}
-        />
-        <Input
-          className={clsx(s.task__value, s.task__value_title)}
-          type="title"
-          name="title"
-          placeholder="Название задачи"
-          value={value.title}
-          onChange={updateValue}
-        />
-        <Input
-          className={clsx(s.task__value, s.task__value_date)}
-          type="date"
-          name="date"
-          value={value.date}
-          onChange={updateValue}
-        />
-        <Button
-          className={clsx(s.task__button, s.task__button_edit)}
-          type="button"
-          value="save-task"
-          disabled
-          onClick={() => console.log('save')}
-        >
-          Сохранить
-        </Button>
-        <Button
-          className={clsx(s.task__button, s.task__button_delete)}
-          type="button"
-          value="delete-task"
-          onClick={handlerTaskDelete}
-        >
-          X
-        </Button>
-      </div>
+      <Input
+        className={clsx(s.task__value, s.task__value_title)}
+        type="title"
+        name="title"
+        placeholder="Название задачи"
+        value={value.title}
+        onChange={updateValue}
+      />
+      <Input
+        className={clsx(s.task__value, s.task__value_date)}
+        type="date"
+        name="date"
+        value={value.date}
+        onChange={updateValue}
+      />
       <Textarea
         className={s.task__desc}
         name="description"
@@ -95,6 +72,27 @@ function Task(props) {
         value={value.description}
         onChange={updateValue}
       />
+      <Checkbox
+        className={s.task__checkbox}
+        checked={completed}
+        onChange={handleStatusToggle}
+      />
+      <Button
+        className={clsx(s.task__button, s.task__button_edit)}
+        type="button"
+        value="save-task"
+        onClick={() => setEdit(!edit)}
+      >
+        {edit ? 'Сохранить' : 'Изменить'}
+      </Button>
+      <Button
+        className={clsx(s.task__button, s.task__button_delete)}
+        type="button"
+        value="delete-task"
+        onClick={handleTaskDelete}
+      >
+        X
+      </Button>
     </div>
   );
 }
@@ -109,6 +107,8 @@ Task.propTypes = {
       completed: PropTypes.bool.isRequired,
     },
   ).isRequired,
+  edit: PropTypes.bool.isRequired,
+  setEdit: PropTypes.func.isRequired,
 };
 
 export default Task;

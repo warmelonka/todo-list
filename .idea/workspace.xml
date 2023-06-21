@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a118128-ed05-4f9d-8727-1c520060c3e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Button/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/Button.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Checkbox/Checkbox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormElements/Input/Input.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormElements/Input/Input.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormElements/Input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormElements/Input/Input.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormElements/Textarea/Textarea.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormElements/Textarea/Textarea.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FormElements/Textarea/Textarea.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormElements/Textarea/Textarea.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NewTask/NewTask.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewTask/NewTask.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NewTask/NewTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewTask/NewTask.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/Task.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/Task.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Task/Task.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/Task.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/Task.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/Task.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/TasksList/TasksList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TasksList/TasksList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/slice/tasksListSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/slice/tasksListSlice.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +101,7 @@
       <workItem from="1685709962849" duration="275000" />
       <workItem from="1685710276308" duration="3720000" />
       <workItem from="1687164632661" duration="3869000" />
-      <workItem from="1687344277014" duration="1471000" />
+      <workItem from="1687344277014" duration="5312000" />
     </task>
     <servers />
   </component>
