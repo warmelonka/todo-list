@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
 import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
+import { getDate } from '../../utils';
 import Button from '../Button/Button';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
@@ -25,6 +27,7 @@ function Task(props) {
     description,
     completed,
   });
+  const now = dayjs().format('YYYY-MM-DD');
 
   const dispatch = useDispatch();
 
@@ -50,28 +53,46 @@ function Task(props) {
 
   return (
     <div className={s.task}>
-      <Input
-        className={clsx(s.task__value, s.task__value_title)}
-        type="title"
-        name="title"
-        placeholder="Название задачи"
-        value={value.title}
-        onChange={updateValue}
-      />
-      <Input
-        className={clsx(s.task__value, s.task__value_date)}
-        type="date"
-        name="date"
-        value={value.date}
-        onChange={updateValue}
-      />
-      <Textarea
-        className={s.task__desc}
-        name="description"
-        placeholder="Описание задачи..."
-        value={value.description}
-        onChange={updateValue}
-      />
+      { edit ? (
+        <>
+          <Input
+            className={clsx(s.task__value, s.task__value_title)}
+            type="title"
+            name="title"
+            placeholder="Название задачи"
+            value={value.title}
+            onChange={updateValue}
+          />
+          <Input
+            className={clsx(s.task__value, s.task__value_date)}
+            type="date"
+            name="date"
+            value={value.date}
+            onChange={updateValue}
+          />
+          <Textarea
+            className={s.task__desc}
+            name="description"
+            placeholder="Описание задачи..."
+            value={value.description}
+            onChange={updateValue}
+          />
+        </>
+      ) : (
+        <>
+          <span className={clsx(s.task__value, s.task__value_title)}>
+            {value.title}
+          </span>
+
+          <span className={clsx(s.task__value, s.task__value_date)}>
+            { getDate(value.date, now, completed) }
+          </span>
+
+          <span className={s.task__desc}>
+            { description ? value.description : 'Нет описания' }
+          </span>
+        </>
+      ) }
       <Checkbox
         className={s.task__checkbox}
         checked={completed}
