@@ -26,8 +26,8 @@ function Task(props) {
     description,
     completed,
   });
-  const now = dayjs().format('YYYY-MM-DD');
   const dispatch = useDispatch();
+  const now = dayjs().format('YYYY-MM-DD');
 
   const updateValue = (e) => {
     setValue({

@@ -1,30 +1,39 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { taskAdd } from '../../slice/tasksListSlice';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
-import { clearForm, updateValue } from '../../slice/taskNewSlice';
 import Button from '../Button/Button';
 import s from './NewTask.module.css';
 
 function NewTask() {
   const dispatch = useDispatch();
-  const taskNew = useSelector((state) => state.taskNewForm);
-  const { title, date, description } = taskNew;
+  const [value, setValue] = useState({
+    title: '',
+    date: '',
+    description: '',
+  });
+
+  const updateValue = (e) => {
+    setValue({
+      ...value,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const clearForm = () => {
+    setValue({
+      title: '',
+      date: '',
+      description: '',
+    });
+  };
 
   const postTask = () => {
     dispatch(taskAdd({
-      title,
-      date,
-      description,
+      ...value,
     }));
-    dispatch(clearForm());
-  };
-
-  const handlerUpdateValue = (e) => {
-    dispatch(updateValue({
-      [e.target.name]: e.target.value,
-    }));
+    clearForm();
   };
 
   return (
@@ -35,15 +44,15 @@ function NewTask() {
           type="text"
           placeholder="Название задачи"
           name="title"
-          value={title}
-          onChange={handlerUpdateValue}
+          value={value.title}
+          onChange={updateValue}
         />
         <Input
           className={s.newTask__date}
           type="date"
           name="date"
-          value={date}
-          onChange={handlerUpdateValue}
+          value={value.date}
+          onChange={updateValue}
         />
       </div>
       <div className={s.newTask__wrapBody}>
@@ -51,13 +60,13 @@ function NewTask() {
           className={s.newTask__description}
           placeholder="Описание задачи..."
           name="description"
-          value={description}
-          onChange={handlerUpdateValue}
+          value={value.description}
+          onChange={updateValue}
         />
         <div className={s.newTask__wrapButton}>
           <Button
             className={s.newTask__add}
-            disabled={!title}
+            disabled={!value.title}
             value="add-task"
             onClick={postTask}
           >
@@ -66,7 +75,7 @@ function NewTask() {
           <Button
             className={s.newTask__clear}
             value="reset-form"
-            onClick={() => dispatch(clearForm())}
+            onClick={clearForm}
           >
             Сбросить
           </Button>

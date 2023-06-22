@@ -5,12 +5,10 @@ import './global.css';
 import { configureStore } from '@reduxjs/toolkit';
 import App from './components/App/App';
 import tasksListReducer from './slice/tasksListSlice';
-import taskNewFormReducer from './slice/taskNewSlice';
 
 const store = configureStore({
   reducer: {
     tasksList: tasksListReducer,
-    taskNewForm: taskNewFormReducer,
   },
 });
 
