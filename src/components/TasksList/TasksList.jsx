@@ -4,7 +4,7 @@ import Task from '../Task/Task';
 
 function TasksList() {
   const tasksList = useSelector((state) => state.tasksList);
-  const [edit, setEdit] = useState(false);
+  const [editTask, setEditTask] = useState('');
 
   return (
     <>
@@ -12,8 +12,8 @@ function TasksList() {
         <Task
           task={task}
           key={task.id}
-          edit={edit}
-          setEdit={setEdit}
+          editTask={editTask}
+          setEditTask={setEditTask}
         />
       ))}
     </>

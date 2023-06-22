@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
+import { saveTask, setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
 import { getDate } from '../../utils';
 import Button from '../Button/Button';
 import Input from '../FormElements/Input/Input';
@@ -12,7 +12,7 @@ import Checkbox from '../Checkbox/Checkbox';
 import s from './Task.module.css';
 
 function Task(props) {
-  const { task, edit, setEdit } = props;
+  const { task, editTask, setEditTask } = props;
   const {
     id,
     title,
@@ -21,14 +21,12 @@ function Task(props) {
     completed,
   } = task;
   const [value, setValue] = useState({
-    id,
     title,
     date,
     description,
     completed,
   });
   const now = dayjs().format('YYYY-MM-DD');
-
   const dispatch = useDispatch();
 
   const updateValue = (e) => {
@@ -51,9 +49,22 @@ function Task(props) {
     }));
   };
 
+  // Edit and save task form
+  const handleSetEdit = (idTaskEdit) => {
+    setEditTask(idTaskEdit);
+  };
+
+  const handleSaveEdit = () => {
+    dispatch(saveTask({
+      id,
+      ...value,
+    }));
+    setEditTask('');
+  };
+
   return (
-    <div className={s.task}>
-      { edit ? (
+    <div className={clsx(s.task, editTask === id && s.task_edit)}>
+      { editTask === id ? (
         <>
           <Input
             className={clsx(s.task__value, s.task__value_title)}
@@ -77,6 +88,14 @@ function Task(props) {
             value={value.description}
             onChange={updateValue}
           />
+          <Button
+            className={clsx(s.task__button, s.task__button_edit)}
+            type="button"
+            value="save-task"
+            onClick={handleSaveEdit}
+          >
+            Сохранить
+          </Button>
         </>
       ) : (
         <>
@@ -89,8 +108,17 @@ function Task(props) {
           </span>
 
           <span className={s.task__desc}>
-            { description ? value.description : 'Нет описания' }
+            { value.description ? value.description : 'Нет описания' }
           </span>
+
+          <Button
+            className={clsx(s.task__button, s.task__button_edit)}
+            type="button"
+            value="save-task"
+            onClick={() => handleSetEdit(id)}
+          >
+            Изменить
+          </Button>
         </>
       ) }
       <Checkbox
@@ -98,14 +126,6 @@ function Task(props) {
         checked={completed}
         onChange={handleStatusToggle}
       />
-      <Button
-        className={clsx(s.task__button, s.task__button_edit)}
-        type="button"
-        value="save-task"
-        onClick={() => setEdit(!edit)}
-      >
-        {edit ? 'Сохранить' : 'Изменить'}
-      </Button>
       <Button
         className={clsx(s.task__button, s.task__button_delete)}
         type="button"
@@ -128,8 +148,8 @@ Task.propTypes = {
       completed: PropTypes.bool.isRequired,
     },
   ).isRequired,
-  edit: PropTypes.bool.isRequired,
-  setEdit: PropTypes.func.isRequired,
+  editTask: PropTypes.string.isRequired,
+  setEditTask: PropTypes.func.isRequired,
 };
 
 export default Task;
