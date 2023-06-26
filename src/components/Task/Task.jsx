@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
+import taskProp from '../../props/task.prop';
 import { getDate } from '../../utils';
 import Button from '../Button/Button';
 import Checkbox from '../Checkbox/Checkbox';
@@ -26,7 +27,7 @@ function Task(props) {
       id,
     }));
   };
-  console.log('render task');
+
   const handleStatusToggle = () => {
     dispatch(setTaskStatus({
       id,
@@ -77,17 +78,9 @@ function Task(props) {
 }
 
 Task.propTypes = {
-  task: PropTypes.shape(
-    {
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-    },
-  ).isRequired,
+  task: taskProp,
   editTask: PropTypes.string.isRequired,
   onEditClick: PropTypes.func.isRequired,
 };
 
-export default Task;
+export default React.memo(Task);

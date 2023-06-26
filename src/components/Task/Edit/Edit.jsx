@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { saveTask, setTaskStatus, taskDelete } from '../../../slice/tasksListSlice';
+import taskProp from '../../../props/task.prop';
 import Input from '../../FormElements/Input/Input';
 import Textarea from '../../FormElements/Textarea/Textarea';
 import Button from '../../Button/Button';
@@ -24,7 +25,7 @@ function Edit(props) {
     description,
   });
   const dispatch = useDispatch();
-  console.log('render edit');
+
   const updateValue = (e) => {
     setEditValue({
       ...editValue,
@@ -103,15 +104,7 @@ function Edit(props) {
 }
 
 Edit.propTypes = {
-  task: PropTypes.shape(
-    {
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-    },
-  ).isRequired,
+  task: taskProp,
   onEditClick: PropTypes.func.isRequired,
 };
 

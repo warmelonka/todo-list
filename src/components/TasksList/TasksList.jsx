@@ -6,7 +6,7 @@ import Edit from '../Task/Edit/Edit';
 function TasksList() {
   const tasksList = useSelector((state) => state.tasksList);
   const [editTask, setEditTask] = useState('');
-  console.log('render list');
+
   return (
     <>
       {tasksList.map((task) => (
