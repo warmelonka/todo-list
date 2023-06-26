@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
-import { saveTask, setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
+import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
 import { getDate } from '../../utils';
 import Button from '../Button/Button';
-import Input from '../FormElements/Input/Input';
-import Textarea from '../FormElements/Textarea/Textarea';
 import Checkbox from '../Checkbox/Checkbox';
 import s from './Task.module.css';
 
 function Task(props) {
-  const { task, editTask, setEditTask } = props;
+  const { task, editTask, onEditClick } = props;
   const {
     id,
     title,
@@ -20,28 +18,15 @@ function Task(props) {
     description,
     completed,
   } = task;
-  const [value, setValue] = useState({
-    title,
-    date,
-    description,
-    completed,
-  });
   const dispatch = useDispatch();
   const now = dayjs().format('YYYY-MM-DD');
-
-  const updateValue = (e) => {
-    setValue({
-      ...value,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleTaskDelete = () => {
     dispatch(taskDelete({
       id,
     }));
   };
-
+  console.log('render task');
   const handleStatusToggle = () => {
     dispatch(setTaskStatus({
       id,
@@ -49,78 +34,31 @@ function Task(props) {
     }));
   };
 
-  // Edit and save task form
   const handleSetEdit = (idTaskEdit) => {
-    setEditTask(idTaskEdit);
-  };
-
-  const handleSaveEdit = () => {
-    dispatch(saveTask({
-      id,
-      ...value,
-    }));
-    setEditTask('');
+    onEditClick(idTaskEdit);
   };
 
   return (
     <div className={clsx(s.task, editTask === id && s.task_edit)}>
-      { editTask === id ? (
-        <>
-          <Input
-            className={clsx(s.task__value, s.task__value_title)}
-            type="title"
-            name="title"
-            placeholder="Название задачи"
-            value={value.title}
-            onChange={updateValue}
-          />
-          <Input
-            className={clsx(s.task__value, s.task__value_date)}
-            type="date"
-            name="date"
-            value={value.date}
-            onChange={updateValue}
-          />
-          <Textarea
-            className={s.task__desc}
-            name="description"
-            placeholder="Описание задачи..."
-            value={value.description}
-            onChange={updateValue}
-          />
-          <Button
-            className={clsx(s.task__button, s.task__button_edit)}
-            type="button"
-            value="save-task"
-            onClick={handleSaveEdit}
-          >
-            Сохранить
-          </Button>
-        </>
-      ) : (
-        <>
-          <span className={clsx(s.task__value, s.task__value_title)}>
-            {value.title}
-          </span>
+      <span className={clsx(s.task__value, s.task__value_title)}>
+        {title}
+      </span>
 
-          <span className={clsx(s.task__value, s.task__value_date)}>
-            { getDate(value.date, now, completed) }
-          </span>
+      <span className={clsx(s.task__value, s.task__value_date)}>
+        {getDate(date, now, completed)}
+      </span>
 
-          <span className={s.task__desc}>
-            { value.description ? value.description : 'Нет описания' }
-          </span>
-
-          <Button
-            className={clsx(s.task__button, s.task__button_edit)}
-            type="button"
-            value="save-task"
-            onClick={() => handleSetEdit(id)}
-          >
-            Изменить
-          </Button>
-        </>
-      ) }
+      <span className={s.task__desc}>
+        {description || 'Нет описания'}
+      </span>
+      <Button
+        className={clsx(s.task__button, s.task__button_edit)}
+        type="button"
+        value="save-task"
+        onClick={() => handleSetEdit(id)}
+      >
+        Изменить
+      </Button>
       <Checkbox
         className={s.task__checkbox}
         checked={completed}
@@ -149,7 +87,7 @@ Task.propTypes = {
     },
   ).isRequired,
   editTask: PropTypes.string.isRequired,
-  setEditTask: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
 };
 
 export default Task;
