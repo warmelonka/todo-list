@@ -2,80 +2,61 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { saveTask, setTaskStatus, taskDelete } from '../../../slice/tasksListSlice';
-import taskProp from '../../../props/task.prop';
-import Input from '../../FormElements/Input/Input';
-import Textarea from '../../FormElements/Textarea/Textarea';
-import Button from '../../Button/Button';
-import Checkbox from '../../Checkbox/Checkbox';
-import s from '../Task.module.css';
+import api from '../../services/api';
+import { saveTask, taskDelete } from '../../slice/tasksListSlice';
+import taskProp from '../../props/task.prop';
+import Input from '../FormElements/Input/Input';
+import Textarea from '../FormElements/Textarea/Textarea';
+import Button from '../Button/Button';
+import s from './Task.module.css';
 
-function Edit(props) {
+function TaskEdit(props) {
   const { task, onEditClick } = props;
-  const {
-    id,
-    title,
-    date,
-    description,
-    completed,
-  } = task;
-  const [editValue, setEditValue] = useState({
-    title,
-    date,
-    description,
-  });
+  const { id } = task;
+
+  const [editTask, setEditValue] = useState(task);
   const dispatch = useDispatch();
 
   const updateValue = (e) => {
     setEditValue({
-      ...editValue,
+      ...editTask,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleStatusToggle = () => {
-    dispatch(setTaskStatus({
-      id,
-      completed,
-    }));
+  const handleTaskDelete = async () => {
+    await api.removeTask(id);
+    dispatch(taskDelete({ id }));
   };
 
-  const handleTaskDelete = () => {
-    dispatch(taskDelete({
-      id,
-    }));
-  };
-
-  const handleSaveEdit = () => {
-    dispatch(saveTask({
-      id,
-      ...editValue,
-    }));
+  const handleSaveEdit = async () => {
+    await api.editTask(editTask);
+    dispatch(saveTask({ ...editTask }));
     onEditClick('');
   };
 
   return (
     <div className={clsx(s.task, s.task_edit)}>
       <Input
-        className={clsx(s.task__value, s.task__value_title)}
+        className={clsx(s.task__value, s.task__value_title, s.task__value_edit)}
         type="text"
         name="title"
         placeholder="Название задачи"
-        value={editValue.title}
+        value={editTask.title}
         onChange={updateValue}
       />
       <Input
         className={clsx(s.task__value, s.task__value_date)}
         type="date"
         name="date"
-        value={editValue.date}
+        value={editTask.date}
         onChange={updateValue}
       />
       <Textarea
         className={s.task__desc}
         name="description"
         placeholder="Описание задачи..."
-        value={editValue.description}
+        value={editTask.description}
         onChange={updateValue}
       />
       <Button
@@ -86,11 +67,6 @@ function Edit(props) {
       >
         Сохранить
       </Button>
-      <Checkbox
-        className={s.task__checkbox}
-        checked={completed}
-        onChange={handleStatusToggle}
-      />
       <Button
         className={clsx(s.task__button, s.task__button_delete)}
         type="button"
@@ -103,9 +79,9 @@ function Edit(props) {
   );
 }
 
-Edit.propTypes = {
+TaskEdit.propTypes = {
   task: taskProp,
   onEditClick: PropTypes.func.isRequired,
 };
 
-export default Edit;
+export default TaskEdit;

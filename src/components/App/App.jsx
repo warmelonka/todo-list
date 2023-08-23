@@ -1,11 +1,22 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import NewTask from '../NewTask/NewTask';
-import TasksList from '../TasksList/TasksList';
+import TasksList from '../TaskList/TasksList';
+import api from '../../services/api';
+import { fetchTodos } from '../../slice/tasksListSlice';
 import s from './App.module.css';
 
 function App() {
   const tasksList = useSelector((state) => state.tasksList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const downloadTodos = async () => {
+      const res = await api.fetchAllTodos();
+      dispatch(fetchTodos(res));
+    };
+    downloadTodos();
+  }, []);
 
   return (
     <div className={s.app}>

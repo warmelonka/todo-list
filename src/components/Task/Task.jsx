@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import api from '../../services/api';
 import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
 import taskProp from '../../props/task.prop';
 import { getDate } from '../../utils';
@@ -22,22 +23,30 @@ function Task(props) {
   const dispatch = useDispatch();
   const now = dayjs().format('YYYY-MM-DD');
 
-  const handleTaskDelete = () => {
+  const handleTaskDelete = async () => {
+    await api.removeTask(id);
     dispatch(taskDelete({
       id,
-    }));
-  };
-
-  const handleStatusToggle = () => {
-    dispatch(setTaskStatus({
-      id,
-      completed,
     }));
   };
 
   const handleSetEdit = (idTaskEdit) => {
     onEditClick(idTaskEdit);
   };
+
+  const handleStatusToggle = async () => {
+    dispatch(setTaskStatus({
+      id,
+      completed,
+    }));
+  };
+
+  useEffect(() => {
+    const changeStatus = async () => {
+      await api.editTask(task);
+    };
+    changeStatus();
+  }, [completed]);
 
   return (
     <div className={clsx(s.task, editTask === id && s.task_edit)}>
@@ -61,9 +70,9 @@ function Task(props) {
         Изменить
       </Button>
       <Checkbox
-        className={s.task__checkbox}
         checked={completed}
         onChange={handleStatusToggle}
+        className={s.task__checkbox}
       />
       <Button
         className={clsx(s.task__button, s.task__button_delete)}

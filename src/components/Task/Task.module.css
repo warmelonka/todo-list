@@ -8,6 +8,7 @@
 }
 
 .task_edit {
+    grid-template-columns: max(304px) 1fr 1fr 50px;
     box-shadow: 0 3px 8px 0 #dfdfdf;
 }
 
@@ -63,6 +64,10 @@
     background-color: white;
     border: none;
     border-left: 1px solid #CBCBCB;
+}
+
+.task__value_edit {
+    border: none;
 }
 
 .task__button_edit {

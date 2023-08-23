@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { taskAdd } from '../../slice/tasksListSlice';
+import api from '../../services/api';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
 import Button from '../Button/Button';
@@ -8,30 +10,35 @@ import s from './NewTask.module.css';
 
 function NewTask() {
   const dispatch = useDispatch();
-  const [value, setValue] = useState({
+  const [task, setValue] = useState({
+    id: nanoid(),
     title: '',
     date: '',
     description: '',
+    completed: false,
   });
 
   const updateValue = (e) => {
     setValue({
-      ...value,
+      ...task,
       [e.target.name]: e.target.value,
     });
   };
 
   const clearForm = () => {
     setValue({
+      id: nanoid(),
       title: '',
       date: '',
       description: '',
+      completed: false,
     });
   };
 
-  const postTask = () => {
+  const postTask = async () => {
+    const newTask = await api.addTask(task);
     dispatch(taskAdd({
-      ...value,
+      ...newTask,
     }));
     clearForm();
   };
@@ -44,14 +51,14 @@ function NewTask() {
           type="text"
           placeholder="Название задачи"
           name="title"
-          value={value.title}
+          value={task.title}
           onChange={updateValue}
         />
         <Input
           className={s.newTask__date}
           type="date"
           name="date"
-          value={value.date}
+          value={task.date}
           onChange={updateValue}
         />
       </div>
@@ -60,13 +67,13 @@ function NewTask() {
           className={s.newTask__description}
           placeholder="Описание задачи..."
           name="description"
-          value={value.description}
+          value={task.description}
           onChange={updateValue}
         />
         <div className={s.newTask__wrapButton}>
           <Button
             className={s.newTask__add}
-            disabled={!value.title}
+            disabled={!task.title}
             value="add-task"
             onClick={postTask}
           >
