@@ -1,6 +1,6 @@
 # Todo-List
 
-### Stack:
+## Stack:
 * React;
 * Redux Toolkit;
 * JSON Server (mock server).
@@ -18,3 +18,12 @@
 ### Edit task
 
 <img src="public/3.png" width="800">
+
+## Getting Started
+
+```bash
+# first
+npm run start:server
+# then
+npm run start
+```
