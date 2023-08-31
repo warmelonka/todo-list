@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import api from '../../services/api';
-import { setTaskStatus, taskDelete } from '../../slice/tasksListSlice';
+import { fetchTodos, setTaskStatus } from '../../slice/tasksListSlice';
 import taskProp from '../../props/task.prop';
 import { getDate } from '../../utils';
 import Button from '../Button/Button';
@@ -25,16 +25,15 @@ function Task(props) {
 
   const handleTaskDelete = async () => {
     await api.removeTask(id);
-    dispatch(taskDelete({
-      id,
-    }));
+    const todos = await api.fetchAllTodos();
+    dispatch(fetchTodos(todos));
   };
 
   const handleSetEdit = (idTaskEdit) => {
     onEditClick(idTaskEdit);
   };
 
-  const handleStatusToggle = async () => {
+  const handleStatusToggle = () => {
     dispatch(setTaskStatus({
       id,
       completed,

@@ -9,22 +9,19 @@ const createApi = () => axios.create({
 });
 
 export default {
-  async fetchAllTodos() {
-    const response = await createApi().get('todos');
-    return response.data;
+  fetchAllTodos() {
+    return createApi().get('todos').then((res) => res.data);
   },
 
-  async addTask(task) {
-    const response = await createApi().post('todos', task);
-    return response.data;
+  addTask(task) {
+    return createApi().post('todos', task).then((res) => res.data);
   },
 
-  async editTask(task) {
-    const response = await createApi().put(`todos/${task.id}`, task);
-    return response.data;
+  editTask(task) {
+    return createApi().put(`todos/${task.id}`, task).then((res) => res.data);
   },
 
-  async removeTask(id) {
+  removeTask(id) {
     return createApi().delete(`todos/${id}`);
   },
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { taskAdd } from '../../slice/tasksListSlice';
+import { fetchTodos } from '../../slice/tasksListSlice';
 import api from '../../services/api';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
@@ -36,10 +36,9 @@ function NewTask() {
   };
 
   const postTask = async () => {
-    const newTask = await api.addTask(task);
-    dispatch(taskAdd({
-      ...newTask,
-    }));
+    await api.addTask(task);
+    const todos = await api.fetchAllTodos();
+    dispatch(fetchTodos(todos));
     clearForm();
   };
 

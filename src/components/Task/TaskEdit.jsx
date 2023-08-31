@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import api from '../../services/api';
-import { saveTask, taskDelete } from '../../slice/tasksListSlice';
+import { fetchTodos } from '../../slice/tasksListSlice';
 import taskProp from '../../props/task.prop';
 import Input from '../FormElements/Input/Input';
 import Textarea from '../FormElements/Textarea/Textarea';
@@ -26,12 +26,14 @@ function TaskEdit(props) {
 
   const handleTaskDelete = async () => {
     await api.removeTask(id);
-    dispatch(taskDelete({ id }));
+    const todos = await api.fetchAllTodos();
+    dispatch(fetchTodos(todos));
   };
 
   const handleSaveEdit = async () => {
     await api.editTask(editTask);
-    dispatch(saveTask({ ...editTask }));
+    const todos = await api.fetchAllTodos();
+    dispatch(fetchTodos(todos));
     onEditClick('');
   };
 
