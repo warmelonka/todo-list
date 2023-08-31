@@ -8,10 +8,12 @@
 ### Empty list
 
 <img src="public/1.png" width="800">
+
 ---
 ### Task UI
 
 <img src="public/2.png" width="800">
+
 ---
 ### Edit task
 
